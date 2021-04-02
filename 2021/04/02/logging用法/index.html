@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>logging用法 - 韭午后&#39;s blog</title>
+  
+    <link rel="shortcut icon" href="/theme-img/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/mimeku" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            <span>April</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>2,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">logging用法</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">	level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s, [%(levelname)s], %(message)s&#x27;</span>,</span><br><span class="line">    stream=sys.stdout,</span><br><span class="line">    datefmt=<span class="string">&#x27;%H:%M:%S&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>filename</code>：日志输出的文件名，如果指定了这个信息，实际上会启用FileHandler，而不再是StreamHanlder，日志信息会输出到文件中</li>
+<li><code>filemode</code>：指定日志文件的写入格式<ul>
+<li>‘w’：清除后写入</li>
+<li>‘a’：追加写入</li>
+</ul>
+</li>
+<li><code>format</code>：指定日志信息的输出格式<ul>
+<li><code>%(levelno)s</code>：打印日志级别的数值</li>
+<li><code>%(levelname)s</code>：打印日志级别的名称</li>
+<li><code>%(pathname)s</code>：打印当前执行程序的路径，即<code>sys.argv[0]</code></li>
+<li><code>%(filename)s</code>：打印当前执行程序名</li>
+<li><code>%(funcName)s</code>：打印日志的当前函数</li>
+<li><code>%(lineno)d</code>：打印日志的当前行号</li>
+<li><code>%(asctime)s</code>：打印日志的时间</li>
+<li><code>%(thread)d</code>：打印线程ID</li>
+<li><code>%(threadName)s</code>：打印线程名称</li>
+<li><code>%(process)d</code>：打印进程ID</li>
+<li><code>%(processName)s</code>：打印进程名称</li>
+<li><code>%(module)s</code>：打印模块名称</li>
+<li><code>%(message)s</code>：打印日志信息</li>
+</ul>
+</li>
+<li><code>datefmt</code>：指定时间的输出格式</li>
+<li><code>level</code>：指定日志输出的类别，程序会输出大于等于该级别的信息</li>
+<li><code>stream</code>：在没有指定<code>filename</code>时默认使用StreamHandler，这时stream可以指定初始化的文件流</li>
+<li><code>handlers</code>：可以指定日志处理时所使用的Handlers，必须是可迭代的</li>
+</ul>
+<h1 id="Level"><a href="#Level" class="headerlink" title="Level"></a>Level</h1><table>
+<thead>
+<tr>
+<th>等级</th>
+<th>CRITICAL</th>
+<th>FATAL</th>
+<th>ERROR</th>
+<th>WARNING</th>
+<th>WARN</th>
+<th>INFO</th>
+<th>DEBUG</th>
+<th>NOTEST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数值</td>
+<td>50</td>
+<td>50</td>
+<td>40</td>
+<td>30</td>
+<td>30</td>
+<td>20</td>
+<td>10</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>设置了输出level后，系统只会输出level数值大于等于该level的日志结果</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imp</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">imp.reload(logging)</span><br><span class="line">logging.basicConfig(</span><br><span class="line">	level=logging.INFO,</span><br><span class="line">    <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s, [%(levelname)s], %(message)s&#x27;</span>,</span><br><span class="line">    stream=sys.stdout,</span><br><span class="line">    datefmt=<span class="string">&#x27;%H:%M:%S&#x27;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.直接使用</span></span><br><span class="line">logging.info(<span class="string">&quot;输出信息&quot;</span>)</span><br><span class="line"><span class="comment"># 2.</span></span><br><span class="line">logger = looging.getLogger(__name__)</span><br><span class="line">logger.info(<span class="string">&quot;输出信息&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by 韭午后, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/mimeku" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:mimeku59@gmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        <div class="power">
+            &copy; 2021 韭午后<br/>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
