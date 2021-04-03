@@ -52,7 +52,7 @@ body {
 
 .content ul, .content ol {
     padding: 10px;
-    padding-left: 40px;
+    padding-left: 50px;
     max-width: calc(800px - 16px * 2);
 }
 
