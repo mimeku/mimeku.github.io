@@ -51,13 +51,16 @@ body {
 }
 
 .content ul, .content ol {
-    padding: 4px;
+    padding: 6px;
     padding-left: 32px;
     max-width: calc(800px - 16px * 2);
 }
 
+.content ul li {
+    padding: 6px;
+}
 /* .content ul *, .content ol * {
-    padding: 0;
+    padding: 5;
 } */
 
 .content blockquote {
