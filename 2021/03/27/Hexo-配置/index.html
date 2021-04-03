@@ -46,6 +46,9 @@
 <link rel="stylesheet" href="/css/waline.css">
 
   
+<link rel="stylesheet" href="/css/add_page.css">
+
+  
   
   
 <link rel="stylesheet" href="/css/post.css">
@@ -67,6 +70,10 @@
             
             
             
+            <a class="nav-item" href="/categories">Categories</a>
+            
+            
+            
             <a class="nav-item" href="/friends">Friends</a>
             
             
@@ -76,6 +83,10 @@
             
             
             <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/mimeku" target="_blank">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-zhihu nav-item-icon" href="https://www.zhihu.com/people/guo-dong-yu-62" target="_blank">&nbsp;</a>
             
             
         </div>
@@ -110,7 +121,7 @@
     <div class="divider"></div>
 
     <div class="content">
-        <p>本主题使用的来自 <a target="_blank" rel="noopener" href="https://github.com/MrWillCom/hexo-theme-cupertino">主题</a>， 自己对其进行了一些调整，尚未完善</p>
+        <h1 id="整体的配置过程"><a href="#整体的配置过程" class="headerlink" title="整体的配置过程"></a>整体的配置过程</h1><p>本主题使用的来自 <a target="_blank" rel="noopener" href="https://github.com/MrWillCom/hexo-theme-cupertino">主题</a>， 自己对其进行了一些调整，尚未完善</p>
 <p>记录一些hexo设置</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45278644/article/details/112600800">Hexo 整体配置过程</a></p>
 <h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>进入博客所在目录</p>
@@ -126,10 +137,13 @@
 <p>本主题封面图片变量名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: Hexo 配置</span><br><span class="line">date: 2021-03-27 14:20:42</span><br><span class="line">tags:</span><br><span class="line"> </span><br><span class="line">cover_image: </span><br></pre></td></tr></table></figure>
 
+<p>本地修改样式后可以用<code>hexo s</code>开启本地服务预览，方便调整，不需要经常push</p>
+<h1 id="创建新页面"><a href="#创建新页面" class="headerlink" title="创建新页面"></a>创建新页面</h1><p><a target="_blank" rel="noopener" href="https://www.voidking.com/dev-hexo-categories/">https://www.voidking.com/dev-hexo-categories/</a></p>
+<p>通过<code>hexo new page &quot;&quot;</code>命令新建了页面后，程序会在/source目录下创建对应的页面目录</p>
+<p>修改页面目录下的index.md 为：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2018-06-11 10:13:21</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">layout: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
-
-
-
+<p>指定了layout为对应的文件名，渲染时就会使用对应的.ejs进行渲染</p>
 
     </div>
 

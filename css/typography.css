@@ -28,6 +28,13 @@ pre {
     font-size: 14px;
 }
 
+.gutter pre{
+    border-right-style: solid;
+    border-right-color: gray;
+    border-right-width: 0.1pt;
+    padding-right: 3pt;
+}
+
 code {
     font-size: 14px;
     background-color: var(--white-1);
