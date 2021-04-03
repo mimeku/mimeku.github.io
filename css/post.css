@@ -56,9 +56,9 @@ body {
     max-width: calc(800px - 16px * 2);
 }
 
-.content ul *, .content ol * {
+/* .content ul *, .content ol * {
     padding: 0;
-}
+} */
 
 .content blockquote {
     max-width: calc(800px - 16px * 2);
