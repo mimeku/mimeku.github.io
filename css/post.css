@@ -51,7 +51,7 @@ body {
 }
 
 .content ul, .content ol {
-    padding: 0 16px;
+    padding: 4px;
     padding-left: 32px;
     max-width: calc(800px - 16px * 2);
 }
