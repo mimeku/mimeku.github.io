@@ -144,6 +144,11 @@
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2018-06-11 10:13:21</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">layout: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
 <p>指定了layout为对应的文件名，渲染时就会使用对应的.ejs进行渲染</p>
+<h1 id="添加categories"><a href="#添加categories" class="headerlink" title="添加categories"></a>添加categories</h1><p>在markdown文件开头处添加<code>categories</code>属性即可自动分类</p>
+<h1 id="自定义图片大小"><a href="#自定义图片大小" class="headerlink" title="自定义图片大小"></a>自定义图片大小</h1><p>直接使用markdown语言添加图片，会自动在网页生成一个<code>&lt;img&gt;</code>标签，也不能对img标签修改样式使得每一张图片有各自适合的大小</p>
+<p>所以需要在markdown文件中使用<code>&lt;img&gt;</code>标签来添加图片，并且使用内联样式控制每一张图片的大小</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:30%;clear:both;display:block;margin:auto;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
