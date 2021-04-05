@@ -121,34 +121,75 @@
     <div class="divider"></div>
 
     <div class="content">
+        
+            
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        
         <h1 id="整体的配置过程"><a href="#整体的配置过程" class="headerlink" title="整体的配置过程"></a>整体的配置过程</h1><p>本主题使用的来自 <a target="_blank" rel="noopener" href="https://github.com/MrWillCom/hexo-theme-cupertino">主题</a>， 自己对其进行了一些调整，尚未完善</p>
 <p>记录一些hexo设置</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45278644/article/details/112600800">Hexo 整体配置过程</a></p>
 <h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>进入博客所在目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>然后source文件夹中会出现相应的md文件</p>
 <p>写完之后使用命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g	<span class="comment"># 生成页面</span></span><br><span class="line">hexo d	<span class="comment"># 部署发布</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>也可以自己手动创建md文件，添加上对应的开头即可</p>
 </blockquote>
 <p>本主题封面图片变量名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: Hexo 配置</span><br><span class="line">date: 2021-03-27 14:20:42</span><br><span class="line">tags:</span><br><span class="line"> </span><br><span class="line">cover_image: </span><br></pre></td></tr></table></figure>
-
 <p>本地修改样式后可以用<code>hexo s</code>开启本地服务预览，方便调整，不需要经常push</p>
 <h1 id="创建新页面"><a href="#创建新页面" class="headerlink" title="创建新页面"></a>创建新页面</h1><p><a target="_blank" rel="noopener" href="https://www.voidking.com/dev-hexo-categories/">https://www.voidking.com/dev-hexo-categories/</a></p>
 <p>通过<code>hexo new page &quot;&quot;</code>命令新建了页面后，程序会在/source目录下创建对应的页面目录</p>
 <p>修改页面目录下的index.md 为：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2018-06-11 10:13:21</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">layout: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
 <p>指定了layout为对应的文件名，渲染时就会使用对应的.ejs进行渲染</p>
 <h1 id="添加categories"><a href="#添加categories" class="headerlink" title="添加categories"></a>添加categories</h1><p>在markdown文件开头处添加<code>categories</code>属性即可自动分类</p>
 <h1 id="自定义图片大小"><a href="#自定义图片大小" class="headerlink" title="自定义图片大小"></a>自定义图片大小</h1><p>直接使用markdown语言添加图片，会自动在网页生成一个<code>&lt;img&gt;</code>标签，也不能对img标签修改样式使得每一张图片有各自适合的大小</p>
 <p>所以需要在markdown文件中使用<code>&lt;img&gt;</code>标签来添加图片，并且使用内联样式控制每一张图片的大小</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;url&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:30%;clear:both;display:block;margin:auto;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
+<h1 id="增加-LaTeX-支持"><a href="#增加-LaTeX-支持" class="headerlink" title="增加$\LaTeX{}$支持"></a>增加$\LaTeX{}$支持</h1><p>参考文章：<a target="_blank" rel="noopener" href="https://adores.cc/posts/62947.html">给未支持LaTeX的Hexo主题添加公式支持</a></p>
+<ol>
+<li><p>在主题下的layout文件夹中创建公式样式，在<code>themes/Your-Theme-Name/layout/</code>下新建文件<code>mathjax.ejs</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.mathjax.enable)&#123; %&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span></span><br><span class="line">      MathJax.Hub.Config(&#123;</span><br><span class="line">          tex2jax: &#123;</span><br><span class="line"><span class="javascript">            inlineMath: [ [<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="javascript">            processEscapes: <span class="literal">true</span></span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span></span><br><span class="line">      MathJax.Hub.Config(&#123;</span><br><span class="line">            tex2jax: &#123;</span><br><span class="line"><span class="javascript">              skipTags: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">      MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">              <span class="keyword">var</span> all = MathJax.Hub.getAllJax(), i;</span></span><br><span class="line">              for(i=0; i &lt; all.length; i += 1) &#123;</span><br><span class="line"><span class="javascript">                  all[i].SourceElement().parentNode.className += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%- theme.mathjax.cdn %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<strong>主题</strong>的<code>_config.yml</code>文件末尾添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>themes/Your-Theme-Name/layout/post.ejs</code>，在文件的&lt;.content&gt;标签中加入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (page.mathjax == true)&#123; %&gt;</span><br><span class="line">    &lt;%- partial(&#x27;mathjax&#x27;) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>最后在需要支持$\LaTeX{}$公式的文章头部加入<code>mathjax: true</code></strong>。</p>
+</li>
+</ol>
+<p>之后，需要替换渲染引擎<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载hexo-math</span></span><br><span class="line">npm uninstall hexo-math         </span><br><span class="line"></span><br><span class="line"><span class="comment"># Pandoc</span></span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-pandoc --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># Kramed（目前使用）</span></span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure></p>
 
     </div>
 

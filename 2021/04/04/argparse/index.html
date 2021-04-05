@@ -121,18 +121,12 @@
     <div class="divider"></div>
 
     <div class="content">
+        
         <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&#x27;Process some integers.&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;integers&#x27;</span>, metavar=<span class="string">&#x27;N&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, nargs=<span class="string">&#x27;+&#x27;</span>,</span><br><span class="line">                    <span class="built_in">help</span>=<span class="string">&#x27;an integer for the accumulator&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--sum&#x27;</span>, dest=<span class="string">&#x27;accumulate&#x27;</span>, action=<span class="string">&#x27;store_const&#x27;</span>,</span><br><span class="line">                    const=<span class="built_in">sum</span>, default=<span class="built_in">max</span>,</span><br><span class="line">                    <span class="built_in">help</span>=<span class="string">&#x27;sum the integers (default: find the max)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">args = parser.parse_args()</span><br><span class="line">print(args.accumulate(args.integers))</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="创建一个解析器"><a href="#创建一个解析器" class="headerlink" title="创建一个解析器"></a>创建一个解析器</h1><p>使用argparse首先需要创建一个<code>ArgumentParser</code>对象，该对象包含将命令行解析成Python数据类型需要的全部信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h1><p>添加参数通过<code>add_argument()</code>方法完成</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ArgumentParser.add_argument(name <span class="keyword">or</span> flags...[, action][, nargs][, const][, default][, <span class="built_in">type</span>][, choices][, required][, <span class="built_in">help</span>][, metavar][, dest])</span><br><span class="line"></span><br><span class="line">parser.add_argument(<span class="string">&#x27;integers&#x27;</span>, metavar=<span class="string">&#x27;N&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, nargs=<span class="string">&#x27;+&#x27;</span>,</span><br><span class="line">		<span class="built_in">help</span>=<span class="string">&#x27;an integer for the accumulator&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--sum&#x27;</span>, dest=<span class="string">&#x27;accumulate&#x27;</span>, action=<span class="string">&#x27;store_const&#x27;</span>,</span><br><span class="line">		const=<span class="built_in">sum</span>, default=<span class="built_in">max</span>,</span><br><span class="line">		<span class="built_in">help</span>=<span class="string">&#x27;sum the integers (default: find the max)&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>name or flags：第一个传递给add_argument的参数必须是一系列flags或者一个简单的参数名</li>
 <li>action：ArgumentParser对象将命令行参数与动作相关联<ul>
@@ -148,7 +142,6 @@
 </ul>
 <h1 id="解析参数"><a href="#解析参数" class="headerlink" title="解析参数"></a>解析参数</h1><p>通过<code>parse_args()</code>方法解析参数。通常情况下，<code>parse_args()</code>会被不带参数调用，而会自动从<code>sys.argv</code>中确定命令行参数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>parser.parse_args([<span class="string">&#x27;--sum&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;-1&#x27;</span>, <span class="string">&#x27;42&#x27;</span>])</span><br><span class="line"></span><br><span class="line">Namespace(accumulate=&lt;built-<span class="keyword">in</span> function <span class="built_in">sum</span>&gt;, integers=[<span class="number">7</span>, -<span class="number">1</span>, <span class="number">42</span>])</span><br></pre></td></tr></table></figure>
-
 
     </div>
 

@@ -44,9 +44,9 @@ body {
     }
 }
 
-.content .highlight .gutter {
+/* .gutter {
     padding-right: 16px;
-}
+} */
 
 
 /* ------------------------- table ------------------------------- */
@@ -64,7 +64,7 @@ body {
 }
 .content table th, .content table tr, .content table td{
     text-align: center;
-    padding: 5pt;
+    padding: 5px;
 }
 .content tbody tr:nth-child(odd){
     background-color: var(--white-1);
@@ -74,6 +74,9 @@ body {
 /* 对代码table的兼容 */
 td.code {
     text-align: left !important;
+}
+td.gutter {
+    padding-top: 1px;
 }
 figure table{
     display: block !important;
