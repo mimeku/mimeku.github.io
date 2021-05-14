@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>mujoco开发环境 - 韭午后&#39;s blog</title>
+  
+    <link rel="shortcut icon" href="/theme-img/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+<link rel="stylesheet" href="/css/add_page.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/categories">Categories</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/mimeku" target="_blank">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-zhihu nav-item-icon" href="https://www.zhihu.com/people/guo-dong-yu-62" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            <span>May</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>14,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">mujoco开发环境</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        
+            
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+          }
+        });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+          });
+      </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+              var all = MathJax.Hub.getAllJax(), i;
+              for(i=0; i < all.length; i += 1) {
+                  all[i].SourceElement().parentNode.className += ' has-jax';
+              }
+          });
+      </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        
+        <h1 id="可能用到的命令"><a href="#可能用到的命令" class="headerlink" title="可能用到的命令"></a>可能用到的命令</h1><ol>
+<li>下载文件： <code>wget url</code></li>
+<li>拷贝： <code>cp source_path to_path</code></li>
+<li>服务器远程传输（ssh）：<code>scp source_path user@address:to_path</code></li>
+<li>修改文件夹名： <code>sudo mv former_name/ new_name/</code></li>
+</ol>
+<h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh">Anaconda下载地址</a>  或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Downloads</span><br><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># install</span></span><br><span class="line">bash Anaconda3-2020.11-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p>安装过程中会提示是否初始化anaconda，建议选择yes。因为anaconda会自动将环境变量添加到PATH中</p>
+<p>之后输入 <code>source ~/.bashrc</code> 即可</p>
+<h2 id="清华源"><a href="#清华源" class="headerlink" title="*清华源"></a>*清华源</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">清华大学开源软件Anaconda</a></p>
+<p>修改<code>~/.condarc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+<h1 id="Mujoco"><a href="#Mujoco" class="headerlink" title="Mujoco"></a>Mujoco</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://www.roboti.us/index.html">Mujoco下载目录</a></p>
+<p>mujoco200 linux 下载地址：<a target="_blank" rel="noopener" href="https://www.roboti.us/download/mujoco200_linux.zip">https://www.roboti.us/download/mujoco200_linux.zip</a></p>
+<p>创建<code>~/.mujoco</code>文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.mujoco</span><br></pre></td></tr></table></figure>
+<p>将下载好的<code>mujoco200_linux</code>复制到<code>~/.mujoco</code>文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/Downloads/mujoco200_linux.zip ~/.mujoco</span><br></pre></td></tr></table></figure>
+<p>解压<code>mujoco200_linux.zip</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.mujoco</span><br><span class="line">unzip mujoco200_linux.zip</span><br></pre></td></tr></table></figure>
+<p>将<code>mujoco200_linux</code>重命名为<code>mujoco200</code>，一定要进行重命名，否则之后母鸡哦凑的配置中搜索不到该文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv mujoco200_linux/ mujoco200/</span><br></pre></td></tr></table></figure>
+<p>将<code>mjkey.txt</code>复制到<code>~/.mujoco</code>和<code>~/.mujoco/mujoco200/bin</code>两个文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp mjkey.txt ~/.mujoco</span><br><span class="line">cp mjkey.txt ~/.mujoco/mujoco200/bin</span><br></pre></td></tr></table></figure>
+<p>测试安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.mujoco/mujoco200/bin</span><br><span class="line">./simulate ../model/humanoid.xml</span><br></pre></td></tr></table></figure>
+<p>配置环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=~/.mujoco/mujoco200/bin<span class="variable">$&#123;LD_LIBRARY_PATH:+:<span class="variable">$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</span></span><br><span class="line"><span class="built_in">export</span> MUJOCO_KEY_PATH=~/.mujoco<span class="variable">$&#123;MUJOCO_KEY_PATH&#125;</span></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="mujoco-py"><a href="#mujoco-py" class="headerlink" title="mujoco-py"></a>mujoco-py</h2><p>下载<code>mujoco-py</code>源码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/openai/mujoco-py.git</span><br></pre></td></tr></table></figure>
+<p>选择需要安装的环境，进入目录并安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mujoco-py</span><br><span class="line">pip install -U <span class="string">&#x27;mujoco-py&lt;2.1,&gt;=2.0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>可能遇到的问题：</p>
+<p>缺少<code>patchelf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install patchelf</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by 韭午后, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/mimeku" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:mimeku59@gmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        <div class="power">
+            &copy; 2021 韭午后<br/>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
