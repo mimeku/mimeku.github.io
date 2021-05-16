@@ -153,31 +153,10 @@
 
         
         <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>类比与传统的MDP中累积最大奖赏的策略</p>
-<script type="math/tex; mode=display">
-\pi^*_{std} = \arg\max_\pi \sum_t \mathbb{E}_{(s_t, a_t)\sim \rho_\pi}[r(s_t, a)]</script><p>最大熵强化学习：</p>
-<script type="math/tex; mode=display">
-\pi^*_{MaxEnt} = \arg\max_\pi \sum_t \mathbb{E}_{(s_t, a_t)\sim \rho_\pi}\left[ \sum_{l=t}^\infty \gamma^{l-t}\mathbb{E}_{(s_l, a_l)}\left[r(s_t, a_t)+\alpha\mathcal{H}\left(\pi(\cdot|s_t)\right)\right]\right]</script><p>如果把新的action value function $Q_{soft}^*$定义为：</p>
+<script type="math/tex; mode=display">\pi^*_{std} = \arg\max_\pi \sum_t \mathbb{E}_{(s_t, a_t)\sim \rho_\pi}[r(s_t, a)]</script><p>最大熵强化学习：</p>
+<script type="math/tex; mode=display">\pi^*_{MaxEnt} = \arg\max_\pi \sum_t \mathbb{E}_{(s_t, a_t)\sim \rho_\pi}\left[ \sum_{l=t}^\infty \gamma^{l-t}\mathbb{E}_{(s_l, a_l)}\left[r(s_t, a_t)+\alpha\mathcal{H}\left(\pi(\cdot|s_t)\right)\right]\right]</script><p>如果把新的action value function $Q_{soft}^*$定义为：</p>
 <script type="math/tex; mode=display">Q_{soft}^*(s_t, a_t) = r_t + \mathbb{E}_{(s_{t+1},\dots)\sim\rho_\pi} \left[\sum_{l=1}^\infty \gamma^l (r_{t+l} + \alpha\mathcal{H}(\pi^*_{MaxEnt}(\cdot|s_{t+l})) )\right]</script><script type="math/tex; mode=display">V_{soft}^*(s_t)=\alpha\log\int_\mathcal{A}\exp\left(\frac{1}{\alpha}Q_{soft}^*(s_t, a')\right)da'</script><p>那么新的策略就可以通过下面的表达式计算：</p>
-<script type="math/tex; mode=display">\pi_{MaxEnt}^*(a_t|s_t) = \exp\left(\frac{1}{\alpha}\left(Q_{soft}^*(s_t, a_t)-V_{soft}^*(s_t)\right)\right)</script><p>从策略$\pi$按照Boltzman分布开始：</p>
-<script type="math/tex; mode=display">\begin{align}
-
-\pi_{MaxEnt}^*(a_t|s_t) &= \frac{\exp(\frac{1}{\alpha}Q_{soft}^*(s_t, a_t))}{\int_\mathcal{A}\exp(\frac{1}{\alpha}Q_{soft}^*(s_t, a')da'}\\
-
-&=  \frac{\exp(\frac{1}{\alpha}Q_{soft}^*(s_t, a_t))}{\exp\left(\frac{1}{\alpha}\alpha\log\int_\mathcal{A}\exp(\frac{1}{\alpha}Q_{soft}^*(s_t, a')da'\right)}\\
-
-&= \frac{\exp(\frac{1}{\alpha}Q_{soft}^*(s_t, a_t))}{\exp(\frac{1}{\alpha}V_{soft}^*(s_t))}\
-
-\end{align}</script><h1 id="Soft-Bellman-Equation"><a href="#Soft-Bellman-Equation" class="headerlink" title="Soft Bellman Equation"></a>Soft Bellman Equation</h1><p>From Soft Q-learning：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-Q_{soft}^*(s_t, a_t) &= r(s_t, a_t) + \mathbb{E}_{(s_{t+1},\dots)\sim\rho(\pi)}\left[\sum_{l=1}^\infty \gamma^l (r_{t+l} + \alpha\mathcal{H}(\pi(\cdot|s_{t+l}))) \right] \\
-&= r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}\sim\rho_s}\left[ \alpha\mathcal{H}(\pi(\cdot|s_{t+1})) + \mathbb{E}_{a_{t+1}\sim\pi(\cdot|s_{t+1})} [Q_{soft}^\pi(s_{t+1}, a_{t+1})] \right]\\
-&= r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}, a_{t+1}}\left[Q_{soft}^\pi(s_{t+1}, a_{t+1}) - \alpha \log\pi(a_{t+1}|s_{t+1})\right]\\
-&= r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}, a_{t+1}} \left[Q_{soft}^\pi(s_{t+1}, a_{t+1}) - \alpha\log\left(\exp\left(\frac{1}{\alpha}(Q_{soft}^\pi(s_{t+1}, a_{t+1}) - V_{soft}^\pi(s_{t+1})   )\right)  \right)  \right]\\
-&= r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}}[V_{soft}^\pi(s_{t+1})]
-\end{align}</script><p>而在SAC中，直接将value function $V_{soft}^\pi$定义为：</p>
-<script type="math/tex; mode=display">V_{soft}^\pi = \mathbb{E}_{a_t\sim\pi}\left[Q(s_t, a_t) - \log \pi(a_t|s_t)  \right]</script><p>所以在Soft Bellman Equation中倒数第二步则可以直接将等式转换为Bellman方程：</p>
-<script type="math/tex; mode=display">Q_{soft}^*(s_t, a_t) = r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}}[V_{soft}^\pi(s_{t+1})]</script><h1 id="优化过程"><a href="#优化过程" class="headerlink" title="优化过程"></a>优化过程</h1>
+<script type="math/tex; mode=display">\pi_{MaxEnt}^*(a_t|s_t) = \exp\left(\frac{1}{\alpha}\left(Q_{soft}^*(s_t, a_t)-V_{soft}^*(s_t)\right)\right)</script>
     </div>
 
     <div class="about">
