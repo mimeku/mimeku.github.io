@@ -164,8 +164,24 @@
 <h1 id="调整左右间距"><a href="#调整左右间距" class="headerlink" title="调整左右间距"></a>调整左右间距</h1><p>使用<code>geometry</code>宏包可以方便地调整间距</p>
 <ol>
 <li>可以使用比例指定内容版面占页面的比例：<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="keyword">\geometry</span>&#123;a4paper,scale=0.8&#125;</span><br></pre></td></tr></table></figure></li>
-<li>也可以使用页面上下左右的各自边距来设置：<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="keyword">\geometry</span>&#123;a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm&#125;</span><br></pre></td></tr></table></figure></li>
+<li>也可以使用页面上下左右的各自边距来设置：<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="keyword">\geometry</span>&#123;a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<h1 id="微分字母-mathrm-d"><a href="#微分字母-mathrm-d" class="headerlink" title="微分字母$\mathrm{d}$"></a>微分字母$\mathrm{d}$</h1><blockquote>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://liam.page/2017/05/01/the-correct-way-to-use-differential-operator/">在LaTeX中使用微分算子的正确形式</a></p>
+</blockquote>
+<p>在 ISO 80000-2:2009 中，微分算子被描述为</p>
+<ul>
+<li>直立的拉丁字母 d；</li>
+<li>一个右边没有间距的操作符。</li>
+</ul>
+<p>对于直立的拉丁字母 d，我们可以使用 \mathrm{d} 达成效果。而若要微分算子的左边有间距，而右边没有，这个问题就值得思考了。</p>
+<p>最简单的办法，是将微分算子做如下实现<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newcommand</span>*&#123;<span class="keyword">\dif</span>&#125;&#123;<span class="keyword">\,</span><span class="keyword">\mathrm</span>&#123;d&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>看起来，这样是没有问题的。但是，在某些情况下，就会出现尴尬的问题。比如<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关于 <span class="built_in">$</span>x<span class="built_in">$</span> 的微分 <span class="built_in">$</span><span class="keyword">\dif</span> x<span class="built_in">$</span> 是值得思考的问题。</span><br></pre></td></tr></table></figure></p>
+<p>因为在<code>\dif</code>的定义中，<code>\mathrm&#123;d&#125;</code>之前有不可省略的铅空<code>\,</code>。于是，这份代码中<code>\dif x</code>与前后正文之间的距离就不一致了。为了解决这个问题，更有经验的人可能会选择这样定义<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newcommand</span>*&#123;<span class="keyword">\dif</span>&#125;&#123;<span class="keyword">\mathop</span>&#123;<span class="keyword">\mathrm</span>&#123;d&#125;&#125;<span class="keyword">\!</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这份代码，试图利用<code>\mathop</code>，只在必要的时候于左边插入空白，修复了上面的问题。不过，这样一来也带来了一些副作用——在<code>\mathop</code>的作用下，<code>\mathrm&#123;d&#125;</code>的基线发生了改变，不再与正常的数学变量保持在同一个基线上。这也是不好的。</p>
+<p>最终解决问题，应该对微分算子有这样的定义<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newcommand</span>*&#123;<span class="keyword">\dif</span>&#125;&#123;<span class="keyword">\mathop</span>&#123;&#125;<span class="keyword">\!</span><span class="keyword">\mathrm</span>&#123;d&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个定义中，拉丁字母 d 本身的特点得到了保留（比如基线是正常的）。此外，在<code>\mathrm&#123;d&#125;</code>的左边，插入了一个空白的<code>\mathop&#123;&#125;</code>；其左边的空白保留，而右边与<code>\mathrm&#123;d&#125;</code>之间的距离，则由<code>\!</code>抑制。这样就达成了我们的目标。</p>
 
     </div>
 
