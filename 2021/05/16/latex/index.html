@@ -185,6 +185,16 @@
 <p>在这个定义中，拉丁字母 d 本身的特点得到了保留（比如基线是正常的）。此外，在<code>\mathrm&#123;d&#125;</code>的左边，插入了一个空白的<code>\mathop&#123;&#125;</code>；其左边的空白保留，而右边与<code>\mathrm&#123;d&#125;</code>之间的距离，则由<code>\!</code>抑制。这样就达成了我们的目标。</p>
 <h1 id="公式中的正体"><a href="#公式中的正体" class="headerlink" title="公式中的正体"></a>公式中的正体</h1><p>例如SAC中公式：</p>
 <script type="math/tex; mode=display">\pi_{\mathrm{new}} = \arg\min_{\pi\in\Pi} \mathrm{D}_\mathrm{KL}\left( \pi'(\cdot|s_t) \Big\| \frac{\exp(Q^{\pi_{\rm old}}(s_t, \cdot))}{Z^{\pi_\mathrm{old}}(s_t)} \right)</script><p>其中$\pi_\mathrm{new}$有如下两种写法：<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="keyword">\pi</span><span class="built_in">_</span><span class="keyword">\mathrm</span>&#123;new&#125;<span class="built_in">$</span></span><br><span class="line"><span class="built_in">$</span><span class="keyword">\pi</span><span class="built_in">_</span>&#123;<span class="keyword">\rm</span> new&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="arg-min-下标正下方"><a href="#arg-min-下标正下方" class="headerlink" title="$\arg\min$下标正下方"></a>$\arg\min$下标正下方</h1><ol>
+<li><p>简单的方法：<code>\mathop&#123;\arg\min&#125;_&#123;\theta&#125;</code>  </p>
+<script type="math/tex; mode=display">\mathop{\arg\min}_{\theta}</script></li>
+<li><p>可以使用$LaTeX$中的<code>\limits</code>控制下标出现在文字或符号的正下方，<code>\mathop&#123;\arg\min&#125;\limits_&#123;\theta&#125;</code></p>
+<script type="math/tex; mode=display">\mathop{\arg\min}\limits_{\theta}</script></li>
+<li><p>但是在<code>arg</code>和<code>min</code>中会存在一定空格，在不同编译器下会呈现不同宽度，有时需要避免该空格，可以使用<code>\mathop&#123;\arg\!\min&#125;_&#123;\theta&#125;</code>：</p>
+<script type="math/tex; mode=display">\mathop{\arg\!\min}_{\theta}</script></li>
+<li><p>或者<code>\mathop&#123;\text&#123;argmin&#125;&#125;_&#123;\theta&#125;</code></p>
+<script type="math/tex; mode=display">\mathop{\text{argmin}}_{\theta}</script></li>
+</ol>
 
     </div>
 
